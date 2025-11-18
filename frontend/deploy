@@ -1,1 +1,1 @@
-rsync -avhz --delete  build/ root@188.166.144.185:/www/build/ 
+rsync -avhz --delete  build/ aws:/var/www/build/ 
