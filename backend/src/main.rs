@@ -21,8 +21,7 @@ use tracing::*;
 
 #[tokio::main]
 async fn main() {
-    // NOTE: Loading environment variables
-    //dotenv().ok();
+    dotenv::dotenv().ok();
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
@@ -49,9 +48,9 @@ async fn main() {
 
 #[derive(Debug, Clone, Deserialize)]
 struct Email {
-    from: String,
+    email: String,
     subject: String,
-    body: String,
+    message: String,
 }
 
 #[tracing::instrument(skip(state))]
@@ -61,7 +60,7 @@ async fn email(State(state): State<AppState>, Json(json): Json<Email>) -> Result
         .from("johanjyyim@gmail.com".parse().unwrap())
         .to("johanjyyim@gmail.com".parse().unwrap())
         .subject(json.subject)
-        .body(format!("{} from {}", json.body, json.from))
+        .body(format!("{} from {}", json.message, json.email))
         .unwrap();
     state.mailer.send(message).await?;
     Ok(())
@@ -89,7 +88,7 @@ pub fn app() -> Router {
     //    //.with_state(state)
 
     Router::new()
-        .route("/", get(async || "backend is running"))
+        .route("/", get(async || env!("BUILD_TIME")))
         .route("/email", post(email))
         .with_state(state)
         .layer(TraceLayer::new_for_http())

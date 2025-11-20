@@ -39,20 +39,16 @@
     <button
       name="menu"
       onclick={() => (isOpen = !isOpen)}
-      class="disappearing mx-4 mt-4 rounded-md text-2xl hover:bg-surface0 hover:text-text sm:hidden
-      "
-      class:text-lavender={isOpen}><Menu /></button
+      class="disappearing mx-4 mt-4 rounded-md text-2xl hover:bg-surface0 hover:text-text sm:hidden {isOpen && 'text-lavender'} "><Menu /></button
     >
     {#if isOpen || innerWidth > 640}
             
-      <!-- TODO: navbar doesn't appear on first frame {#if !isOpen && innerWidth <= 640} causes fail on build -->
       <ul class="relative mx-4 justify-center gap-x-4 sm:flex">
         {#each links as { href, text }}
           <li class="contents">
             <a
               {href}
-              class="disappearing text-lg block w-fit rounded-lg p-2 text-overlay2 hover:text-text"
-              class:active={routeId == href}
+              class="disappearing text-lg block w-fit rounded-lg p-2 text-overlay2 hover:text-text {routeId == href && 'active' }"
               onclick={() => (isOpen = false)}>{text}</a
             >
           </li>

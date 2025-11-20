@@ -6,15 +6,11 @@
   {#each events.slice().reverse() as event, i}
     <li class="group z-10 ms-6 py-2 sm:py-4">
       <span
-        class="absolute -start-3 z-[-10] mt-6 flex h-6 w-6 items-center justify-center rounded-full border-4 border-subtext0 bg-crust ring-[1rem] ring-crust transition-all duration-150 group-hover:border-lavender"
-        class:bg-subtext0={i === 0}
-        class:group-hover:bg-lavender={i === 0}
+        class="absolute -start-3 z-[-10] mt-6 flex h-6 w-6 items-center justify-center rounded-full border-4 border-subtext0 bg-crust ring-[1rem] ring-crust transition-all duration-150 group-hover:border-lavender {i === 0 ? 'bg-subtext0 group-hover:bg-lavender' : ''}"
       >
       </span>
       <div
-        class="space-y-1 rounded-xl border-2 border-base bg-crust p-4 ring-opacity-60 transition-all duration-150 group-hover:border-surface0 group-hover:bg-mantle group-hover:ring-opacity-100 sm:space-y-3"
-        class:ring-4={i === 0}
-        class:ring-lavender={i === 0}
+        class="space-y-1 rounded-xl border-2 border-base bg-crust p-4 ring-opacity-60 transition-all duration-150 group-hover:border-surface0 group-hover:bg-mantle group-hover:ring-opacity-100 sm:space-y-3 {i === 0 ? 'ring-4 ring-lavender' : ''} "
       >
         <h3
           class="inline-block items-center text-xl font-bold text-lavender sm:text-2xl"

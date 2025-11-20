@@ -17,5 +17,15 @@ export default defineConfig({
             compiler: 'svelte'
         }),
         enhancedImages(),
-    ]
+    ],
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://0.0.0.0:2020',
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/api/, '')
+            }
+
+        },
+    }
 });
