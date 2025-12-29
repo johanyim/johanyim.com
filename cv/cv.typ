@@ -1,11 +1,11 @@
 #let info = yaml("cv.yaml");
-#let column_widths = (1.3cm, auto)
+#let column_widths = (3em, auto)
 #import "@preview/cmarker:0.1.6"
 
 // #set text(size: 12pt, font: "Roboto")
-#set text(size: 11pt, font: "Roboto")
+#set text(size: 10pt, font: "Roboto")
 // #set text(size: 12pt)
-// #set text(size: 11pt)
+// #set text(size: 9pt)
 #set page(margin: 2em)
 
 
@@ -85,14 +85,14 @@
   columns: column_widths,
   column-gutter: 10pt,
   row-gutter: 20pt,
-  ..for (title, url, display_url, description, points) in info.projects {
+  ..for (title, url, icon, display_url, description, points) in info.projects {
     (
       [],
       [
 
         #text()[= #title #text(size: 12pt, weight: "thin", fill: luma(128), link(
           url,
-        )[ #raw(display_url)])]
+        )[#str.from-unicode(icon) #raw(display_url)])]
         #listof(points)
       ],
     )

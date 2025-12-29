@@ -1,2 +1,2 @@
 npm run build
-rsync -avhz --delete  build/ aws:/var/www/build/ 
+rsync -avhz --delete  build/ aws:/var/www/www/ 
